@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="98584de0-a76f-47ae-9238-4023e878a318" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="calculatorpractice1Flow" doc:id="f38db970-4ded-4af8-8152-902a5af5bd67" >
+		<http:listener doc:name="Listener" doc:id="3d6f7047-95e5-4fd7-ae22-1551614fbd91" config-ref="HTTP_Listener_config" path="/calculator1"/>
+		<logger level="INFO" doc:name="Logger" doc:id="afaa5d38-e2e5-48e5-ac43-351d84c27eae" message="Start Logger"/>
+		<choice doc:name="Choice" doc:id="60fbfeb5-9ae6-4117-8571-257dde6e0c23" >
+			<when expression='#[attributes.queryParams.operation == "Add"]'>
+				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum + payload.secondNum&#10;}]' doc:name="Set Payload" doc:id="66e4fc7c-557b-4b13-85b7-1156f8de8116" />
+			</when>
+			<when expression='#[attributes.queryParams.operation == "Sub"]'>
+				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum - payload.secondNum&#10;}]' doc:name="Set Payload" doc:id="fc87c970-0e5a-43b9-bedd-2a3a84d48aee" />
+			</when>
+			<when expression='#[attributes.queryParams.operation == "multiply"]'>
+				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum * payload.secondNum&#10;}]' doc:name="Set Payload" doc:id="bed0bf35-9bf5-4a8a-955b-1242a9538f19" />
+			</when>
+			<when expression='#[attributes.queryParams.operation == "divide"]'>
+				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum / payload.secondNum&#10;}]' doc:name="Set Payload" doc:id="4bcf83c4-ecbe-4918-9354-49506c613718" />
+			</when>
+		</choice>
+	</flow>
+</mule>
