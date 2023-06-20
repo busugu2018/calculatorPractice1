@@ -12,17 +12,18 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<logger level="INFO" doc:name="Logger" doc:id="afaa5d38-e2e5-48e5-ac43-351d84c27eae" message="Start Logger"/>
 		<choice doc:name="Choice" doc:id="60fbfeb5-9ae6-4117-8571-257dde6e0c23" >
 			<when expression='#[attributes.queryParams.operation == "Add"]'>
-				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum + payload.secondNum&#10;}]' doc:name="Set Payload" doc:id="66e4fc7c-557b-4b13-85b7-1156f8de8116" />
+				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum + payload.secondNum&#10;}]' doc:name="Add Set Payload" doc:id="66e4fc7c-557b-4b13-85b7-1156f8de8116" />
 			</when>
 			<when expression='#[attributes.queryParams.operation == "Sub"]'>
-				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum - payload.secondNum&#10;}]' doc:name="Set Payload" doc:id="fc87c970-0e5a-43b9-bedd-2a3a84d48aee" />
+				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum - payload.secondNum&#10;}]' doc:name="Sub Set Payload" doc:id="fc87c970-0e5a-43b9-bedd-2a3a84d48aee" />
 			</when>
 			<when expression='#[attributes.queryParams.operation == "multiply"]'>
-				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum * payload.secondNum&#10;}]' doc:name="Set Payload" doc:id="bed0bf35-9bf5-4a8a-955b-1242a9538f19" />
+				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum * payload.secondNum&#10;}]' doc:name="Multiply Set Payload" doc:id="bed0bf35-9bf5-4a8a-955b-1242a9538f19" />
 			</when>
 			<when expression='#[attributes.queryParams.operation == "divide"]'>
-				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum / payload.secondNum&#10;}]' doc:name="Set Payload" doc:id="4bcf83c4-ecbe-4918-9354-49506c613718" />
+				<set-payload value='#[output application/json&#10;---&#10;{&#10;	"result": payload.firstNum / payload.secondNum&#10;}]' doc:name="Divide Set Payload" doc:id="4bcf83c4-ecbe-4918-9354-49506c613718" />
 			</when>
 		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="1656e49f-71d4-4a05-821b-c6f2fb87c308" message="End logger "/>
 	</flow>
 </mule>
